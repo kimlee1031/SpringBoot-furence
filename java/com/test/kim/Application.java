@@ -1,0 +1,16 @@
+package com.test.kim;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+@MapperScan(basePackages = "com.test.kim.mapper") // Mapper 인터페이스가 있는 패키지 경로로 변경
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+        
+    }
+}
+

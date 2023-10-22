@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.kim.mapper.UserMapper">
+    <select id="findUser" resultType="com.test.kim.dto.UserDto">
+        SELECT * FROM t_user
+    </select>
+
+    <insert id="insertUser" parameterType="com.test.kim.dto.UserDto">
+        INSERT INTO t_user (id, pwd, name, level, description, regdate)
+        VALUES (#{id}, #{pwd}, #{name}, #{level}, #{description}, #{regdate})
+    </insert>
+
+    <delete id="deleteUsers">
+        DELETE FROM t_user
+    </delete>
+
+</mapper>

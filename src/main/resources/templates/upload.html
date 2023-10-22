@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        #userTable {
+            display: none;
+        }
+        .upload-section {
+            margin-bottom: 20px;
+        }
+
+        .custom-file-label::after {
+            content: "검색";
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-4">신입 개발자 1차 과제</h2>
+    <div class="card">
+        <div class="card-body">
+            <div class="upload-section">
+                <form class="container" action="/upload" method="POST" enctype="multipart/form-data">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="file" accept=".dbfile">
+                        <label class="custom-file-label" for="customFile" id="fileLabel">파일 선택</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">업로드</button>
+                </form>
+                <div>
+                    <form action="#" th:action="@{/deleteUsers}" th:object="${form}" method="post">
+                        <button class="btn btn-primary mt-2" type="submit">전체 데이터 삭제</button>
+                    </form>
+                <div th:if="${message}" th:text="${message}"></div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer">Furence</div>
+    </div>
+
+    <!-- 업로드 성공 또는 실패 메시지 표시 -->
+
+    <div th:if="${result}" class="mt-4">
+        <!-- Check if FileCheck is false -->
+        <div th:if="${not result.fileCheck}" class="alert alert-danger">
+            <p th:text="${result.getMessage()}"></p>
+        </div>
+        <div th:if="${result.isDuplicateCheck()}" class="alert alert-danger">
+            <p th:text="'동일 데이터가 이미 존재합니다.'"></p>
+        </div>
+        <!-- Check if FileCheck is true -->
+        <div th:if="${result.fileCheck}">
+            <div th:if="${not result.isDuplicateCheck()}">
+            <div th:if="${result.getFailCount()}==0" class="alert alert-success">
+                <p th:text="'전체 성공: 총 ' + ${result.getSuccessCount()} + '건 입력 성공'"></p>
+                <button id="showUploadedUsers" class="btn btn-primary">업로드 완료 조회</button>
+            </div>
+            </div>
+            <div th:if="${result.failCount} >0" class="alert alert-danger">
+                <p th:text="'파일 업로드 결과 ' + ${result.getSuccessCount()} + ' 건 입력 성공' + ${result.getFailCount()} + ' 건 입력 실패'"></p>
+                <ul>
+                    <li th:each="error, index : ${result.errors}">
+                        - 실패한 라인: <span th:text="${error.getLineNumber() + 1}"></span><br>
+                        실패 내용: <span th:text="${error.getErrorLine()}"></span><br>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped" id="userTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>PWD</th>
+                <th>Name</th>
+                <th>Level</th>
+                <th>DESC</th>
+                <th>REG_DATE</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $("#customFile").change(function () {
+        var fileName = $(this).val().split("\\").pop();
+        $("#fileLabel").text(fileName);
+    });
+
+    $("#showUploadedUsers").click(function () {
+        $.ajax({
+            type: "GET",
+            url: "/uploadedUsers",
+            dataType: "json",
+            success: function (data) {
+                displayUsers(data);
+            },
+            error: function () {
+                console.error("요청 실패");
+            }
+        });
+    });
+
+    function displayUsers(users) {
+        var tableBody = $("#userTable tbody");
+        tableBody.empty();
+
+        if (users.length === 0) {
+            tableBody.append(
+                "<tr><td colspan='6'>데이터가 없습니다.</td></tr>"
+            );
+        } else {
+            $.each(users, function (index, user) {
+                var formattedDate = new Date(user.regdate);
+                formattedDate = formattedDate.toLocaleString("ko-KR", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "numeric"
+                });
+
+                tableBody.append(
+                    "<tr>" +
+                    "<td>" + user.id + "</td>" +
+                    "<td>" + user.pwd + "</td>" +
+                    "<td>" + user.name + "</td>" +
+                    "<td>" + user.level + "</td>" +
+                    "<td>" + user.description + "</td>" +
+                    "<td>" + formattedDate + "</td>" +
+                    "</tr>"
+                );
+            });
+        }
+
+        $("#userTable").show();
+
+
+    }
+
+
+</script>
+</body>
+</html>
