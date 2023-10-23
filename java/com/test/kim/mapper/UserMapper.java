@@ -15,3 +15,4 @@ public interface UserMapper {
 
     void deleteUsers();
 }
+//mapper

@@ -21,7 +21,7 @@ public class UserDto {
     }
 
     public UserDto(String[]args) {
-        //ArrayIndexOutOfBoundsException
+        //ArrayIndexOutOfBoundsException11
         this.id = args[0];
         this.pwd = args[1];
         this.name = args[2];

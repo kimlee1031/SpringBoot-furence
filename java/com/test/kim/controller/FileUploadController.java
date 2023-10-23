@@ -28,7 +28,7 @@ public class FileUploadController {
     
     /*@GetMapping("/")
     public String redirectToUpload() {
-    	log.info("/----> /upload");
+    	log.info("/----> /upload");1
         return "redirect:/upload";
     }*/
     

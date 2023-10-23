@@ -35,7 +35,7 @@ public class GetUploadUserController {
 
 
 
-    // 데이터 삭체 코드 주석 처리
+    // 데이터 삭체 코드 주석 처리 1
     @GetMapping("/deleteUsers")
     public String returnDelete() {
         return "upload";

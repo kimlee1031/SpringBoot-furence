@@ -25,7 +25,7 @@ public class GetUploadedUserService {
         return userMapper.findUser();
     }
 
-    //데이터 삭제 코드 주석 처리
+    //데이터 삭제 코드 주석 처리1
     public void deleteUsers() {
         userMapper.deleteUsers();
     }

@@ -3,6 +3,7 @@ package com.test.kim.model;
 
 import lombok.extern.slf4j.Slf4j;
 
+//2
 @Slf4j
 public class ErrorInfo {
     private String errorLine;
