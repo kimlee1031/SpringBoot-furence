@@ -5,7 +5,7 @@
         SELECT * FROM t_user
     </select>
 
-    <insert id="insertUser" parameterType="com.test.kim.dto.UserDto">
+    <insert id="insertUser" >
         INSERT INTO t_user (id, pwd, name, level, description, regdate)
         VALUES (#{id}, #{pwd}, #{name}, #{level}, #{description}, #{regdate})
     </insert>

@@ -1,8 +1,6 @@
 package com.test.kim.dto;
 
-import java.io.IOException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 import lombok.*;
 
@@ -15,7 +13,7 @@ public class UserDto {
     private String level;
     private String description;
     private Timestamp regdate;// Timestamp 타입 사용
-
+    private Integer kim;
     public UserDto() {
     	
     }
@@ -29,13 +27,18 @@ public class UserDto {
         this.description = args[4];
         this.regdate = Timestamp.valueOf(args[5]);
     }
-    public UserDto(String id, String pwd, String name, String level, String desciption, LocalDateTime regdate) {
+    public UserDto(String id, String pwd, String name, String level, String desciption, String regdate) {
         this.id = id;
         this.pwd = pwd;
         this.name = name;
         this.level = level;
         this.description = desciption;
         this.regdate = Timestamp.valueOf(regdate);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s,%s,%s,%s,%s,%s",id, pwd, name, level, description, regdate);
     }
 
 }

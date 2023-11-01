@@ -14,8 +14,7 @@ class ParseDateTest {
 
     ParseDate D = new ParseDate();
 
-    @Test
-    void parseD() {
+    @Test    void parseD() {
 
         String dataString = "2020-10-01 10:00:00";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

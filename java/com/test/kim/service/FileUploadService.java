@@ -5,6 +5,7 @@ import com.test.kim.mapper.UserMapper;
 import com.test.kim.model.ErrorInfo;
 import com.test.kim.model.Result;
 import com.test.kim.service.FileUploadServiceMethod.ValidateFile;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -17,6 +18,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Slf4j
 @Service
 public class FileUploadService {
