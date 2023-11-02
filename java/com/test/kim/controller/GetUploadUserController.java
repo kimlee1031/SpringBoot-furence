@@ -45,7 +45,7 @@ public class GetUploadUserController {
     public String deleteUserAll(Model model) {
         getUploadedUsersService.deleteUsers();
         model.addAttribute("message","데이터 삭제 완료");
-        log.info("Call GetUploadedUserConrtoller"+model);
+        log.info("Call GetUploadedUserConrtoller"+model.toString());
         return "upload";
     }
 
