@@ -33,7 +33,7 @@ public class FileUploadController {
     }*/
     
 
-    @GetMapping("/")
+    @GetMapping("/upload")
     public String uploadForm() {
         log.info("redirect upload");
         return "upload";

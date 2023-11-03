@@ -9,8 +9,8 @@ public interface MemberRepository {
 
     void save(Member member);
 
-    Member findById(Long memNb);
+    Member findByN(Long memNb);
 
-    Member findByMemberName(String memberNm);
+    //Member findByMemberId(String memberId);
 
 }

@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class MemoryMemberRepository implements MemberRepository {
 
-    private static Map<Long, Member> store = new ConcurrentHashMap<>();
+    public static Map<Long, Member> store = new ConcurrentHashMap<>();
 
     @Override
     public void save(Member member) {
@@ -15,13 +15,13 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Member findById(Long memN) {
+    public Member findByN(Long memN) {
         return store.get(memN);
     }
 
-    @Override
-    public Member findByMemberName(String memberNm) {
-        return store.get(memberNm);
-    }
+    /*@Override
+    public Member findByMemberId(String memberId) {
+        return store.get(memberId);
+    }*/
 
 }

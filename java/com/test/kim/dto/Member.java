@@ -11,8 +11,18 @@ public class Member {
     private String memberPwd;
     private String memberNm;
 
+    public Member(Long memN, String memberId, String memberPwd, String memberNm) {
+        this.memN = memN;
+        this.memberId = memberId;
+        this.memberPwd = memberPwd;
+        this.memberNm = memberNm;
+    }
+
+    Member() {
+    }
+
     @Override
     public String toString() {
-        return "Member [ memberId = " + memberId + "memberPwd = " + memberPwd + "memberNm" + memberNm + "]";
+        return "Member [ memberNumber : " +memN+"memberId = " + memberId + "/memberPwd = " + memberPwd + "/memberNm" + memberNm + "]";
     }
 }
