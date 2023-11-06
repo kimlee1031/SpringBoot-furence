@@ -20,7 +20,8 @@ public class LoginController {
 
     @GetMapping("/")
     public String main() {
-        return ("/login");
+        log.info("현재 저장되어 있는 유저들"+store.toString());
+        return ("redirect:/login");
     }
 
 
@@ -32,10 +33,8 @@ public class LoginController {
 
     @PostMapping("/login")
     public String processLogin(Member member, RedirectAttributes redirectAttributes) {
-        member.setMemberNm("kim");
-        member.setMemN(2L);
         System.out.println(member + "=받아온 멤버");
-        Member foundMember1 = memberService.findMemberByAll(member.getMemN(), member.getMemberPwd());
+        Member foundMember1 = memberService.findMemberByAll(member.getMemberId(), member.getMemberPwd());
         if (foundMember1 != null) {
             redirectAttributes.addFlashAttribute("message", "로그인에 성공했습니다.");
             return "redirect:/upload"; // 로그인 성공 시 index.html로 리다이렉트
@@ -62,4 +61,7 @@ public class LoginController {
         System.out.println(memberService.findMember(4L));
         return "/login";
     }
+
+
+
 }

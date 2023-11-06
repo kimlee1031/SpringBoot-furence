@@ -25,8 +25,8 @@ class loginTest {
         memberService.insertMember(member1);
         Member member2 = memberService.findMember(5L);
         System.out.println(member2);
-        Member foundMember = memberService.findMemberByAll(member.getMemN(), member.getMemberPwd());
-        Assertions.assertThat(foundMember).isNotNull();
+        Member foundMember = memberService.findMemberByAll(member.getMemberId(), member.getMemberPwd());
+        Assertions.assertThat(foundMember).isEqualTo(member1);
 
 
 

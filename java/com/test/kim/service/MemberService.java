@@ -7,7 +7,7 @@ public interface MemberService {
 
     Member findMember(Long memN);
 
-    Member findMemberByAll(Long memN, String password);
+    Member findMemberByAll(String memberId, String password);
 
 
 

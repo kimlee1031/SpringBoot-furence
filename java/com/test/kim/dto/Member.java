@@ -6,16 +6,16 @@ import lombok.Setter;
 
 @Getter @Setter
 public class Member {
-    private Long memN;
+    private Long memberNumber;
     private String memberId;
     private String memberPwd;
-    private String memberNm;
+    private String memberName;
 
-    public Member(Long memN, String memberId, String memberPwd, String memberNm) {
-        this.memN = memN;
+    public Member(Long memberNumber, String memberId, String memberPwd, String memberName) {
+        this.memberNumber = memberNumber;
         this.memberId = memberId;
         this.memberPwd = memberPwd;
-        this.memberNm = memberNm;
+        this.memberName = memberName;
     }
 
     Member() {
@@ -23,6 +23,6 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member [ memberNumber : " +memN+"memberId = " + memberId + "/memberPwd = " + memberPwd + "/memberNm" + memberNm + "]";
+        return "Member [ memberNumber : " + memberNumber +"memberId = " + memberId + "/memberPwd = " + memberPwd + "/memberName" + memberName + "]";
     }
 }

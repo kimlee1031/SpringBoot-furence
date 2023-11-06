@@ -11,6 +11,6 @@ public interface MemberRepository {
 
     Member findByN(Long memNb);
 
-    //Member findByMemberId(String memberId);
+    Member findByMemberId(String memberId);
 
 }
