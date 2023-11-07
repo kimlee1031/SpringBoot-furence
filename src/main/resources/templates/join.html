@@ -1,29 +1,77 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Join</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 <h2>Join</h2>
 <form action="/join" method="post">
-    <!--/*@thymesVar id="message" type="java"*/-->
-    <div th:if="${message}" th:text="${message}"></div>
-    <br>
-    <label for="userid">사용자 아이디:</label>
-    <input type="text" id="userid" name="memberId" required>
-    <br>
-    <label for="password">비밀번호:</label>
-    <input type="password" id="password" name="memberPwd" required>
-    <br>
-    <label for="username">사용자 이름 </label>
-    <input type="text" id="username" name="memberName" required>
-    <br>
-    <button type="submit">회원가입</button>
+    <div th:if="${message}" class="alert alert-danger" role="alert" th:text="${message}"></div>
+    <div class="form-group">
+        <label for="userid">사용자 아이디:</label>
+        <input type="text" id="userid" name="memberId" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="memberPwd" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="username">사용자 이름:</label>
+        <input type="text" id="username" name="memberName" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">회원가입</button>
 </form>
-
-<form action="/return login" method="post">
-    <button onclick="location.href='join.html'">로그인 돌아가기</button >
+<form action="/login" method="get">
+    <button class="btn btn-link">로그인 화면으로 돌아가기</button>
 </form>
-
 </body>
 </html>

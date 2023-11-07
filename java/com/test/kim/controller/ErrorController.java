@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ErrorController {
-    @GetMapping("/error400")
-    public String Error400(HttpServletRequest request) {
+    @GetMapping("/error")
+    public String Error(HttpServletRequest request) {
         return "/join";
     }
 }

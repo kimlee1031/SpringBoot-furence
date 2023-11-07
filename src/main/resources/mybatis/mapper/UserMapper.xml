@@ -14,10 +14,4 @@
         DELETE FROM t_user
     </delete>
 
-    <insert id="insertMember">
-        INSERT INTO member(member_number, member_id, member_password, member_name)
-        SELECT;
-    </insert>
-
-
 </mapper>

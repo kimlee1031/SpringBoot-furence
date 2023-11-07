@@ -2,6 +2,7 @@ package com.test.kim.controller;// LoginController.java
 import com.test.kim.dto.Member;
 import com.test.kim.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +17,13 @@ import static com.test.kim.repository.MemoryMemberRepository.store;
 public class LoginController {
     private final MemberService memberService;
 
-    public LoginController(MemberService memberService) {
+    public LoginController(@Qualifier("memberServicePostgres") MemberService memberService) {
         this.memberService = memberService;
     }
 
     @GetMapping("/")
     public String main() {
-        log.info("현재 저장되어 있는 유저들"+store.toString());
+        log.info("현재 저장되어 있는 유저들"+ memberService.findAllMember());
         return ("redirect:/login");
     }
 
@@ -74,6 +75,7 @@ public class LoginController {
         try {
             memberService.insertMember(joinMember);
         } catch (Exception e) {
+            e.printStackTrace();
             redirectAttributes.addFlashAttribute("message", "아이디가 중복되었습니다. 다시 입력해 주세요");
             return ("redirect:/join");
         }

@@ -4,6 +4,7 @@ import com.test.kim.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 @Slf4j
@@ -50,5 +51,10 @@ public class MemberServiceImpl implements MemberService {
                 // 일치하지 않으면 null 반환
                 return null;
             }
+    }
+
+    @Override
+    public List<Member> findAllMember() {
+        return null;
     }
 }

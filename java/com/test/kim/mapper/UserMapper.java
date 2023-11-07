@@ -3,6 +3,7 @@ package com.test.kim.mapper;
 
 import java.util.List;
 
+import com.test.kim.dto.Member;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.test.kim.dto.UserDto;
