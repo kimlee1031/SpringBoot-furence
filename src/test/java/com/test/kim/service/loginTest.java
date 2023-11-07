@@ -18,9 +18,9 @@ class loginTest {
     }
 
     @Test
-    void checkLogin() {
-        Member member = new Member(5L, "kim5", "kim5", "kim5");
-        Member member1 = new Member(5L, "kim5", "kim5", "kim5");
+    void checkLogin() throws Exception {
+        Member member = new Member("kim5", "kim5", "kim5");
+        Member member1 = new Member("kim5", "kim5", "kim5");
 
         memberService.insertMember(member1);
         Member member2 = memberService.findMember(5L);

@@ -1,7 +1,6 @@
 package com.test.kim.service;// MemberServiceImpl.java
 import com.test.kim.dto.Member;
 import com.test.kim.repository.MemberRepository;
-import com.test.kim.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -11,19 +10,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
+    private java.lang.Exception Exception;
 
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
     @Override
-    public void insertMember(Member member) {
-        // 사용자 추가 로직을 여기에 구현
-        // 예를 들어, 사용자 저장
+    public void insertMember(Member member) throws Exception {
         String memberId = member.getMemberId();
         Member byMemberId = memberRepository.findByMemberId(memberId);
+        log.info("회원가입 입장");
         if (byMemberId != null) {
-            return;
+            log.info("이미 존재하는 ID 입니다.");
+            throw Exception;
         } else {
             memberRepository.save(member);
             log.info("사용자 회원가입 성공");

@@ -9,8 +9,11 @@ public class MemoryMemberRepository implements MemberRepository {
 
     public static Map<String, Member> store = new ConcurrentHashMap<>();
 
+    private static long sequence = 1L;
+
     @Override
     public void save(Member member) {
+        member.setMemberNumber(sequence++);
         store.put(member.getMemberId(), member);
     }
 

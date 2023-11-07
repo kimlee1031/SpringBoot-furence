@@ -22,7 +22,7 @@ public class Application {
         memberRepository.save(member);*/
 
         MemberRepository memberRepository = new MemoryMemberRepository();
-        Member member = new Member(1L, "kim", "kim", "kim");
+        Member member = new Member("kim", "kim", "kim");
         memberRepository.save(member);
         //System.out.println(store);
 

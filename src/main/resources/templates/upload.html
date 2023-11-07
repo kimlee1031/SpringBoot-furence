@@ -37,7 +37,9 @@
                     <form action="#" th:action="@{/deleteUsers}" th:object="${form}" method="post">
                         <button class="btn btn-primary mt-2" type="submit">전체 데이터 삭제</button>
                     </form>
-                    <br>
+                    <form action="#" th:action="@{/logout}" th:object="${form}" method="post">
+                        <button class="btn btn-primary mt-2" type="submit">로그아웃</button>
+                    </form>
                     <br>
                 <div class="alert alert-success" th:if="${message}" th:text="${message}"></div>
 

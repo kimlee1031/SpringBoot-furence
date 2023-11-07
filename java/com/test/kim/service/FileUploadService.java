@@ -53,6 +53,8 @@ public class FileUploadService {
                     result.incSuccessCount();
                     log.info("데이터 저장 완료");
                 }catch (DuplicateKeyException de){
+                    result.failedErrors(line,lineNumber);
+                    result.incFailCount();
                     log.info("중복 데이터 오류");
                     de.printStackTrace();
                     result.setDuplicateCheck(true);
@@ -61,6 +63,8 @@ public class FileUploadService {
                     e.printStackTrace();
                     result.incFailCount();
                     log.info("파일업로드 중  예외발생 ");
+                    System.out.println("--------------------"+result.getFailCount());
+                    System.out.println("--------------------"+result.getErrors());
                 }finally {
                     lineNumber++;
                 }

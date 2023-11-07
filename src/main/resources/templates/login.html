@@ -5,6 +5,7 @@
 </head>
 <body>
 <h2>Login</h2>
+<!--/*@thymesVar id="message" type="java"*/-->
 <form action="/login" method="post">
     <label for="username">사용자명:</label>
     <input type="text" id="username" name="memberId" required>
@@ -17,8 +18,8 @@
     <button type="submit">로그인</button>
 </form>
 
-<form action="/join" method="get">
 
+<form action="/join" method="get">
     <button onclick="location.href='join.html'">회원가입</button >
 </form>
 

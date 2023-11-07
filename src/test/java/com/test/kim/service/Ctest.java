@@ -28,9 +28,9 @@ public class Ctest {
 
     @Test
     @DisplayName("멤버 찾기")
-    public void testInsertMember() {
+    public void testInsertMember() throws Exception {
         // 샘플 멤버 제작...
-        Member member = new Member(1L, "testuser", "password123", "John Doe");
+        Member member = new Member( "testuser", "password123", "John Doe");
 
         // Mock the behavior of the memberRepository
         Mockito.when(memberRepository.findByMemberId("testuser")).thenReturn(null); // Member not found
@@ -46,7 +46,7 @@ public class Ctest {
     @DisplayName("멤버 검색")
     public void testFindMember() {
         // Mock the behavior of the memberRepository
-        Member expectedMember = new Member(1L, "testuser", "password123", "John Doe");
+        Member expectedMember = new Member( "testuser", "password123", "John Doe");
         Mockito.when(memberRepository.findByN(1L)).thenReturn(expectedMember);
 
         // Call the method to be tested
@@ -60,7 +60,7 @@ public class Ctest {
     @DisplayName("로그인")
     public void testFindMemberByAll() {
         // Mock the behavior of the memberRepository
-        Member expectedMember = new Member(1L, "testuser", "password123", "John Doe");
+        Member expectedMember = new Member( "testuser", "password123", "John Doe");
         Mockito.when(memberRepository.findByMemberId("testuser")).thenReturn(expectedMember);
 
         // Call the method to be tested

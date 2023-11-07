@@ -6,9 +6,15 @@ import com.test.kim.repository.MemoryMemberRepository;
 import static com.test.kim.repository.MemoryMemberRepository.store;
 
 public class Apptest {
-    public static void main(String[] args) {
-        MemberRepository memberRepository = new MemoryMemberRepository();
+    MemberRepository memberRepository;
 
-        System.out.println(store);
+    public Apptest(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+    public static void main(String[] args) {
+
+
+        System.out.println(store.values());
     }
 }

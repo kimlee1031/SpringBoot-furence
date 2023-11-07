@@ -11,8 +11,7 @@ public class Member {
     private String memberPwd;
     private String memberName;
 
-    public Member(Long memberNumber, String memberId, String memberPwd, String memberName) {
-        this.memberNumber = memberNumber;
+    public Member(String memberId, String memberPwd, String memberName) {
         this.memberId = memberId;
         this.memberPwd = memberPwd;
         this.memberName = memberName;

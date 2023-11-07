@@ -2,7 +2,9 @@ package com.test.kim.controller;// LoginController.java
 import com.test.kim.dto.Member;
 import com.test.kim.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -44,6 +46,21 @@ public class LoginController {
         }
     }
 
+    @PostMapping("/logout")
+    public String logOut() {
+        log.info("로그아웃, 로그인 창으로 돌아갑니다.");
+        return "redirect:/login";
+    }
+
+    @PostMapping("/return login")
+    public String returnLogin() {
+        log.info("로그아웃, 로그인 창으로 돌아갑니다.");
+        return "redirect:/login";
+    }
+
+
+
+
 
     @GetMapping("/join")
     public String join() {
@@ -52,14 +69,15 @@ public class LoginController {
     }
 
     @PostMapping("/join")
-    public String processJoin(Member joinMember) {
+    public String processJoin(Member joinMember, RedirectAttributes redirectAttributes) {
         log.info(joinMember+"회원가입 진행 완료");
-        memberService.insertMember(joinMember);
-        System.out.println(memberService.findMember(1L));
-        System.out.println(memberService.findMember(2L));
-        System.out.println(memberService.findMember(3L));
-        System.out.println(memberService.findMember(4L));
-        return "/login";
+        try {
+            memberService.insertMember(joinMember);
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "아이디가 중복되었습니다. 다시 입력해 주세요");
+            return ("redirect:/join");
+        }
+        return "redirect:/login";
     }
 
 
